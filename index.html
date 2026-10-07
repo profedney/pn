@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Faz a página se adaptar corretamente a celulares e tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <style>
+
+        /* =========================================================
+           CONFIGURAÇÕES GERAIS
+           ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            /* Flexbox para centralizar o login na tela */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            /* Tema escuro */
+            background-color: #121212;
+            color: #eeeeee;
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================================================
+           CAIXA PRINCIPAL DO LOGIN
+           ========================================================= */
+
+        .login-container {
+            width: 100%;
+            max-width: 380px;
+
+            padding: 30px 25px;
+
+            background-color: #1e1e1e;
+
+            border: 1px solid #333333;
+            border-radius: 12px;
+
+            /* Sombra discreta */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* =========================================================
+           TÍTULO
+           ========================================================= */
+
+        .login-container h1 {
+            margin-bottom: 25px;
+
+            text-align: center;
+
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           FORMULÁRIO
+           ========================================================= */
+
+        .formulario {
+            display: flex;
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        /* =========================================================
+           CAMPOS DE USUÁRIO E SENHA
+           ========================================================= */
+
+        .formulario input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #444444;
+            border-radius: 6px;
+
+            background-color: #292929;
+            color: #ffffff;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: border-color 0.2s;
+        }
+
+
+        /* Destaque do campo quando estiver selecionado */
+
+        .formulario input:focus {
+            border-color: #777777;
+        }
+
+
+        /* Cor do texto de exemplo */
+
+        .formulario input::placeholder {
+            color: #777777;
+        }
+
+
+        /* =========================================================
+           BOTÃO ENTRAR
+           ========================================================= */
+
+        .formulario button {
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: #3a3a3a;
+            color: #ffffff;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: background-color 0.2s;
+        }
+
+
+        /* Efeito ao passar o mouse sobre o botão */
+
+        .formulario button:hover {
+            background-color: #505050;
+        }
+
+
+        /* Efeito ao clicar */
+
+        .formulario button:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =========================================================
+           MENSAGEM DE ERRO
+           ========================================================= */
+
+        .mensagem {
+            min-height: 20px;
+
+            margin-top: 5px;
+
+            text-align: center;
+
+            color: #ff6b6b;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           RODAPÉ
+           ========================================================= */
+
+        .rodape {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #666666;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           AJUSTES PARA TELAS MAIORES
+           ========================================================= */
+
+        @media (min-width: 600px) {
+
+            .login-container {
+                padding: 35px 30px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         ÁREA PRINCIPAL DO LOGIN
+         ========================================================= -->
+
+    <main class="login-container">
+
+        <!-- Título principal -->
+
+        <h1>Login</h1>
+
+
+        <!--
+            Formulário de autenticação.
+
+            O JavaScript será responsável por verificar
+            o usuário e a senha cadastrados.
+        -->
+
+        <form class="formulario" id="formLogin">
+
+
+            <!-- Campo para o nome do usuário -->
+
+            <input
+                type="text"
+                id="usuario"
+                placeholder="Usuário"
+                autocomplete="username"
+                required
+            >
+
+
+            <!-- Campo para a senha -->
+
+            <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+                autocomplete="current-password"
+                required
+            >
+
+
+            <!-- Botão para realizar o login -->
+
+            <button type="submit">
+                Entrar
+            </button>
+
+
+            <!--
+                Mensagem apresentada quando o login
+                estiver incorreto.
+            -->
+
+            <div class="mensagem" id="mensagem"></div>
+
+        </form>
+
+
+        <!-- Rodapé simples -->
+
+        <div class="rodape">
+            Login
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================================
+           USUÁRIOS E SENHAS
+           =========================================================
+
+           Cadastre aqui os usuários que terão acesso ao painel.
+
+           O formato é:
+
+               "usuario": "senha"
+
+           Para adicionar outro usuário, coloque uma vírgula
+           depois do usuário anterior e adicione uma nova linha.
+
+           EXEMPLO:
+
+               const usuarios = {
+                   "admin": "123456",
+                   "edney": "abc123",
+                   "usuario1": "senha123"
+               };
+
+           IMPORTANTE:
+
+           Como este é um sistema feito somente com HTML, CSS
+           e JavaScript, os usuários e senhas ficam armazenados
+           no código JavaScript.
+
+           Portanto, esta solução serve para uma proteção simples
+           e não deve ser utilizada para informações altamente
+           confidenciais.
+        */
+
+        const usuarios = {
+
+            "admin": "123456",
+
+            "edney": "abc123",
+
+            "usuario1": "senha123"
+
+        };
+
+
+        /* =========================================================
+           CAPTURA DOS ELEMENTOS DA PÁGINA
+           =========================================================
+
+           Aqui pegamos os campos e o formulário pelo ID definido
+           no HTML.
+        */
+
+        const formulario = document.getElementById("formLogin");
+
+        const campoUsuario = document.getElementById("usuario");
+
+        const campoSenha = document.getElementById("senha");
+
+        const mensagem = document.getElementById("mensagem");
+
+
+        /* =========================================================
+           PROCESSAMENTO DO LOGIN
+           =========================================================
+
+           Esta função é executada quando o usuário clicar
+           no botão "Entrar".
+        */
+
+        formulario.addEventListener("submit", function(event) {
+
+            /*
+                Impede que o navegador recarregue a página
+                ao enviar o formulário.
+            */
+
+            event.preventDefault();
+
+
+            /*
+                Obtém os valores digitados nos campos.
+            */
+
+            const usuarioDigitado = campoUsuario.value.trim();
+
+            const senhaDigitada = campoSenha.value;
+
+
+            /* =====================================================
+               VERIFICAÇÃO DO USUÁRIO
+               =====================================================
+
+               Primeiro verificamos se o usuário digitado existe
+               dentro da lista cadastrada acima.
+            */
+
+            if (usuarios[usuarioDigitado]) {
+
+
+                /*
+                    O usuário existe.
+
+                    Agora comparamos a senha digitada com a senha
+                    cadastrada para esse usuário.
+                */
+
+                if (usuarios[usuarioDigitado] === senhaDigitada) {
+
+                    /*
+                        Usuário e senha estão corretos.
+
+                        Redireciona para o painel principal.
+
+                        O arquivo painel.html deve estar na mesma
+                        pasta deste index.html.
+                    */
+
+                    window.location.href = "painel.html";
+
+                } else {
+
+                    /*
+                        Usuário existe, mas a senha está incorreta.
+                    */
+
+                    mensagem.textContent = "Usuário ou senha incorretos.";
+
+                    campoSenha.value = "";
+
+                    campoSenha.focus();
+                }
+
+
+            } else {
+
+                /*
+                    Usuário não está cadastrado.
+
+                    Por segurança, mostramos a mesma mensagem
+                    utilizada para senha incorreta.
+
+                    Dessa forma não informamos se determinado
+                    usuário existe ou não.
+                */
+
+                mensagem.textContent = "Usuário ou senha incorretos.";
+
+                campoSenha.value = "";
+
+                campoSenha.focus();
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

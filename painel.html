@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- Faz a página se adaptar corretamente a celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel de Atalhos - TI</title>
+
+
+    <style>
+
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+           ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 20px;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            /* Tema escuro */
+            background-color: #121212;
+            color: #eeeeee;
+        }
+
+
+        /* =====================================================
+           CABEÇALHO
+           ===================================================== */
+
+        header {
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        header h1 {
+            margin: 0 0 8px 0;
+
+            font-size: 26px;
+
+            color: #eeeeee;
+        }
+
+
+        header p {
+            margin: 0;
+
+            color: #aaaaaa;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           ÁREA DOS LINKS
+
+           Mobile first:
+           - Uma única coluna.
+
+           No desktop:
+           - O Flexbox transforma em 3 colunas.
+           ===================================================== */
+
+        .painel {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           CADA CARTÃO / ATALHO
+           ===================================================== */
+
+        .atalho {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            padding: 20px;
+
+            /* Cartão escuro */
+            background-color: #1e1e1e;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            color: #eeeeee;
+
+            border: 1px solid #333333;
+
+            /* Sombra discreta */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+
+            /* Animação suave */
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                background-color 0.2s;
+        }
+
+
+        /* =====================================================
+           EFEITO AO PASSAR O MOUSE SOBRE O CARTÃO
+           ===================================================== */
+
+        .atalho:hover {
+
+            transform: translateY(-3px);
+
+            background-color: #252525;
+
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.55);
+        }
+
+
+        /* =====================================================
+           ÍCONE
+
+           Utilizamos emojis para manter o projeto simples,
+           sem depender de bibliotecas externas.
+           ===================================================== */
+
+        .icone {
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           NOME DO SISTEMA
+           ===================================================== */
+
+        .nome {
+            font-size: 16px;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            margin-bottom: 5px;
+
+            color: #eeeeee;
+        }
+
+
+        /* =====================================================
+           DESCRIÇÃO
+           ===================================================== */
+
+        .descricao {
+            font-size: 13px;
+
+            color: #999999;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           RODAPÉ
+           ===================================================== */
+
+        footer {
+            max-width: 1200px;
+
+            margin: 30px auto 0;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            color: #777777;
+        }
+
+
+        /* =====================================================
+           DESKTOP
+
+           A partir de 768px:
+           três colunas utilizando Flexbox.
+           ===================================================== */
+
+        @media (min-width: 768px) {
+
+            .painel {
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+            }
+
+
+            .atalho {
+
+                /*
+                 * Cada item ocupa aproximadamente 1/3 da linha.
+                 * O gap é considerado pelo cálculo.
+                 */
+
+                flex: 1 1 calc(33.333% - 15px);
+
+                min-width: 250px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         CABEÇALHO
+         ===================================================== -->
+
+    <header>
+
+        <h1>🖥️ Painel de Atalhos TI</h1>
+
+        <p>
+            Acesso rápido aos sistemas e ferramentas
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAINEL DE LINKS
+         ===================================================== -->
+
+    <main class="painel">
+
+
+        <!-- =================================================
+             FreshService - Dashboard
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://modulardatacenters.freshservice.com/a/dashboard/default"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">🎫</div>
+
+            <div class="nome">
+                O meu painel
+            </div>
+
+            <div class="descricao">
+                FreshService
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             FreshService - Portal do colaborador
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://modulardatacenters.freshservice.com/support/home"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">🛠️</div>
+
+            <div class="nome">
+                Apoio: Modular Data Centers
+            </div>
+
+            <div class="descricao">
+                FreshService - Colaborador
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             NDD Print
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://360.nddprint.com/dashboard"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">🖨️</div>
+
+            <div class="nome">
+                NDD Print Portal 360
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             AnyDesk
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://my.anydesk.com/v2/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">🖥️</div>
+
+            <div class="nome">
+                my.anydesk
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Gen.te
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://login.lg.com.br/login/modulardtc"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">👥</div>
+
+            <div class="nome">
+                Plataforma Gen.te
+            </div>
+
+            <div class="descricao">
+                Autenticação
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             SharePoint TI
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://modulardatacenters.sharepoint.com/sites/tecnologiadainformao/SitePages/CollabHome.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">📚</div>
+
+            <div class="nome">
+                Tecnologia da Informação
+            </div>
+
+            <div class="descricao">
+                SharePoint TI
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Escala de trabalho
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="http://172.44.0.44/schedule"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">📅</div>
+
+            <div class="nome">
+                Escala de Trabalho
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Zabbix
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="http://172.44.0.43/zabbix/zabbix.php?action=dashboard.view&amp;dashboardid=1&amp;from=now-2d&amp;to=now"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">📊</div>
+
+            <div class="nome">
+                SRV-PRD-ZBX01
+            </div>
+
+            <div class="descricao">
+                Dashboard Zabbix
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Academia Modular
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://academiamodulardtc.micropower.com.br/Performa/Web/Portal/Main/Home.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">🎓</div>
+
+            <div class="nome">
+                Academia Modular
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Qualiex
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://apps1.qualiex.com/docs"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">📄</div>
+
+            <div class="nome">
+                Qualiex
+            </div>
+
+            <div class="descricao">
+                Documentos
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Inventário TI
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="http://172.44.0.44:85/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">💻</div>
+
+            <div class="nome">
+                Dashboard - Inventário TI
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             Password Pusher
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://oss.pwpush.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">🔐</div>
+
+            <div class="nome">
+                Password Pusher
+            </div>
+
+            <div class="descricao">
+                Envie uma senha com segurança
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             WMS
+             ================================================= -->
+
+        <a
+            class="atalho"
+            href="https://pimodularwms.b1cloud.com.br:10004/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="icone">📦</div>
+
+            <div class="nome">
+                WMS Modular
+            </div>
+
+            <div class="descricao">
+                pimodularwms.b1cloud.com.br
+            </div>
+
+        </a>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         RODAPÉ
+         ===================================================== -->
+
+    <footer>
+
+        Painel de Atalhos • Tecnologia da Informação
+
+    </footer>
+
+
+</body>
+
+</html>
